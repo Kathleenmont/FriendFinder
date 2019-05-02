@@ -28,6 +28,7 @@ module.exports = function (app) {
          for (var i = 0; i < friendsScoresArray.length; i++)   {
             var difference = []
             var totalDifference = []
+            var myDifferernce;
                 for(var j = 0; j < friendsScoresArray[i].length; j++){
                     
                     difference.push(Math.abs(friendsScoresArray[i][j] - newUserScoreInt[j]))
@@ -37,17 +38,32 @@ module.exports = function (app) {
                    
                 }
                 console.log("_______________________________________________________")
-                for (var k = 0 ; k < difference.length; k++) {
-                    var total = difference + difference[k];
-                }
-                console.log(total)
+
                 
+                
+                var total = function () {
+                     myDifferernce   =  difference.reduce(function (curr, prev) { 
+                   
+                       return curr + prev; });
+
+                  
+          
+                  
+                    
+                }
+
+                total();
+                totalDifference.push(myDifferernce);
+                console.log(totalDifference)
+             
+               
+            
                
          } 
             
-      
+        //  total(difference);
        
-        
+       
         console.log("new User " + newUserScoreInt);
         
     });
