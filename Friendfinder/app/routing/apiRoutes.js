@@ -20,56 +20,54 @@ module.exports = function (app) {
         var friendsScoresArray = []
 
         for (var i = 0; i < friendsData.length; i++) {
-            console.log(friendsData[i].scores)
-              friendsScoresArray.push(friendsData[i].scores)  
-            }
-           
-           
-         for (var i = 0; i < friendsScoresArray.length; i++)   {
+            // console.log(friendsData[i].scores)
+            friendsScoresArray.push(friendsData[i].scores)
+        }
+
+        console.log(friendsScoresArray)
+
+        var totalDifference = []
+        for (var i = 0; i < friendsScoresArray.length; i++) {
             var difference = []
-            var totalDifference = []
+            
             var myDifferernce;
-                for(var j = 0; j < friendsScoresArray[i].length; j++){
-                    
-                    difference.push(Math.abs(friendsScoresArray[i][j] - newUserScoreInt[j]))
-             
-                    
-               
-                   
-                }
-                console.log("_______________________________________________________")
+            for (var j = 0; j < friendsScoresArray[i].length; j++) {
 
-                
-                
-                var total = function () {
-                     myDifferernce   =  difference.reduce(function (curr, prev) { 
-                   
-                       return curr + prev; });
+                difference.push(Math.abs(friendsScoresArray[i][j] - newUserScoreInt[j]))
 
-                  
-          
-                  
-                    
-                }
 
-                total();
-                totalDifference.push(myDifferernce);
-                console.log(totalDifference)
-             
-               
+
+
+            }
+            console.log("_______________________________________________________")
+
+
+            var sum = difference.reduce(function(a, b) {
+                return a + b;
+            }, 0)
+
+         
+            totalDifference.push(sum);
+
+        }
+      
+        console.log(totalDifference)
+        var bestMatchNumber;
+        var bestMatchindex;
+        for (var i = 0; i < totalDifference.length; i++) {
+            if (totalDifference[i] <= totalDifference[i+1]) {
+                bestMatchNumber = totalDifference[i];
+                bestMatchindex = [i];
+                console.log(bestMatchNumber)
+                console.log(bestMatchindex)
+            }
             
-               
-         } 
-            
-        //  total(difference);
-       
-       
+        }
+        console.log("final index " + bestMatchindex)
         console.log("new User " + newUserScoreInt);
-        
+
     });
 
+
     
-    // for (var i = 0; i < friendsData.length; i++) {
-    //     console.log(friendsData[i].scores)
-    // }
 }
