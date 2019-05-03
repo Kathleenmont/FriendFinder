@@ -153,12 +153,41 @@
                                 <option value="5">5 (strongly agree)</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                        <button type="submit" class="btn btn-primary submit" data-toggle="modal"
+                            data-target="#exampleModalCenter">Submit</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                       
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+            
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+  </button> -->
+
+
 
 </body>
 <script type="text/javascript">
@@ -181,12 +210,21 @@
             scores: newFriendScores
         }
 
-    
+
 
         var currentURL = window.location.origin;
 
         $.post(currentURL + "/api/friends", newFriend, function (data) {
             console.log("processing!")
+
+            console.log(data)
+            $('.modal-title').append(data.name);
+           
+            $('.modal-body').append(`<img src="${data.photo}">`)
+
+
+  
+
             $('#name').val("");
             $('#photo').val("");
             $("#quest1").val("1"); $("#quest2").val("1"); $("#quest3").val("1"); $("#quest4").val("1"); $("#quest5").val("1");

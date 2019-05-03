@@ -25,24 +25,21 @@ module.exports = function (app) {
         }
 
         console.log(friendsScoresArray)
-
+        //total diff aray
         var totalDifference = []
         for (var i = 0; i < friendsScoresArray.length; i++) {
+            //temp diff array stor
             var difference = []
-            
-            var myDifferernce;
+            //temp diff var storage
+           
             for (var j = 0; j < friendsScoresArray[i].length; j++) {
 
-                difference.push(Math.abs(friendsScoresArray[i][j] - newUserScoreInt[j]))
-
-
-
+                difference.push(Math.abs(friendsScoresArray[i][j] - newUserScoreInt[j]));
 
             }
-            console.log("_______________________________________________________")
-
-
-            var sum = difference.reduce(function(a, b) {
+           
+            var sum = difference.reduce(function(a, b)
+            {
                 return a + b;
             }, 0)
 
@@ -51,20 +48,30 @@ module.exports = function (app) {
 
         }
       
-        console.log(totalDifference)
-        var bestMatchNumber;
+        console.log("total diff "+ totalDifference)
+        // assume the first value is the lowest going into loop
+        var bestMatchNumber = totalDifference[0];
         var bestMatchindex;
-        for (var i = 0; i < totalDifference.length; i++) {
-            if (totalDifference[i] <= totalDifference[i+1]) {
-                bestMatchNumber = totalDifference[i];
-                bestMatchindex = [i];
-                console.log(bestMatchNumber)
-                console.log(bestMatchindex)
+       
+        for (var i = 0; i < totalDifference.length - 1; i++) {
+          
+            if (totalDifference[i + 1] <= bestMatchNumber ) {
+                bestMatchNumber = totalDifference[i + 1];
+                bestMatchindex = i + 1;
+                
             }
             
         }
+        var bestMatch = {
+            name: friendsData[bestMatchindex].name,
+            photo: friendsData[bestMatchindex].photo
+        }
         console.log("final index " + bestMatchindex)
         console.log("new User " + newUserScoreInt);
+
+        console.log(friendsData[bestMatchindex].name)
+        console.log(friendsData[bestMatchindex].photo)
+        res.json(bestMatch)
 
     });
 
