@@ -8,8 +8,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // connecting to the routes.js pages
-require('./routing/apiRoutes.js')(app);
-require('./routing/htmlRoutes.js')(app);
+require('./app/routing/apiRoutes.js')(app);
+require('./app/routing/htmlRoutes.js')(app);
 
 // making server connection
 app.listen(PORT, function () {
