@@ -1,6 +1,6 @@
 # FriendFinder
 
-Friend Finder is a app that has a survey for users to fill out. The results are calculated to retrieve the closest friend match to the user based on their survey answers. Friend Finder was created to showcase the use of Node.js, Express.js, JavaScript and HTML skills as well as to provide an app for the user to take a survey and see their friend match.
+Friend Finder is a full-stack app that has a survey for users to fill out. The results are calculated to retrieve the closest friend match to the user based on their survey answers. Friend Finder was created to showcase the use of Node.js, Express.js, JavaScript and HTML skills as well as to provide an app for the user to take a survey and see their friend match.
 
 ## Getting Started
 
